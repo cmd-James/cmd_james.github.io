@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>James Moatlhudi — Electrical Engineer & Renewable Energy Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+/* ─── DESIGN TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --bg:        #0a1a0e;
+  --bg2:       #0d1f11;
+  --bg3:       #112516;
+  --card:      #111f14;
+  --card2:     #172b1c;
+  --border:    #1e3d25;
+  --accent:    #00e676;
+  --accent2:   #00c853;
+  --accent3:   #f59e0b;
+  --accent4:   #38bdf8;
+  --accent5:   #a78bfa;
+  --text:      #e2f0e5;
+  --text2:     #94b89a;
+  --text3:     #5a7a60;
+  --glow:      rgba(0,230,118,0.15);
+  --glow2:     rgba(245,158,11,0.12);
+  --radius:    12px;
+  --radius-lg: 20px;
+  --tr:        0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:3px}
+
+/* ─── ANIMATED BACKGROUND ───────────────────────────────────────────── */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,230,118,0.03) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,230,118,0.03) 1px,transparent 1px);
+  background-size:60px 60px}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;animation:orbFloat 12s ease-in-out infinite}
+.bg-orb-1{width:600px;height:600px;top:-200px;left:-200px;background:rgba(0,200,83,0.07)}
+.bg-orb-2{width:500px;height:500px;bottom:-150px;right:-150px;background:rgba(245,158,11,0.07);animation-delay:-6s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,20px) scale(1.05)}}
+
+/* ─── NAV ───────────────────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,26,14,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-weight:800;font-size:1.1rem;letter-spacing:-0.5px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{padding:6px 13px;border-radius:8px;font-size:0.82rem;font-weight:500;
+  color:var(--text2);transition:var(--tr);text-transform:uppercase;letter-spacing:0.04em}
+.nav-links a:hover{background:var(--card2);color:var(--text);text-decoration:none}
+
+/* ─── LAYOUT ────────────────────────────────────────────────────────── */
+.wrapper{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+
+/* ─── SECTION HEADER ────────────────────────────────────────────────── */
+.section-label{display:flex;align-items:center;gap:10px;
+  font-size:0.75rem;font-weight:700;color:var(--accent);
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px}
+.section-label::after{content:'';flex:1;height:1px;
+  background:linear-gradient(to right,var(--border),transparent)}
+.section-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;
+  letter-spacing:-1px;margin-bottom:8px;color:var(--text)}
+.section-sub{color:var(--text2);font-size:0.95rem;margin-bottom:48px}
+
+/* ─── HERO ──────────────────────────────────────────────────────────── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:100px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.3);
+  border-radius:100px;padding:6px 16px;font-size:0.8rem;
+  color:var(--accent);font-weight:500;margin-bottom:24px}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;
+  background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero-name{font-size:clamp(2.8rem,5vw,4.2rem);font-weight:800;
+  line-height:1.05;letter-spacing:-2px;margin-bottom:12px}
+.hero-name span{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 50%,var(--accent3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-title{font-size:1.05rem;color:var(--text2);font-weight:400;margin-bottom:20px}
+.hero-title strong{color:var(--accent4);font-weight:600}
+.hero-summary{font-size:0.95rem;color:var(--text2);line-height:1.8;margin-bottom:28px;max-width:520px}
+.hero-contacts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.contact-chip{display:flex;align-items:center;gap:8px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:8px 14px;font-size:0.82rem;color:var(--text2);transition:var(--tr)}
+.contact-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.contact-chip i{font-size:0.85rem;width:14px;text-align:center}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:#0a1a0e;padding:12px 24px;border-radius:10px;
+  font-weight:700;font-size:0.9rem;transition:var(--tr);border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,200,83,0.4);text-decoration:none;color:#0a1a0e}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--text2);padding:12px 24px;border-radius:10px;
+  font-weight:600;font-size:0.9rem;transition:var(--tr);border:1px solid var(--border);cursor:pointer}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+
+/* Hero Visual */
+.hero-visual{position:relative}
+.hero-card-stack{position:relative;height:420px}
+.stat-card{position:absolute;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:20px 24px;backdrop-filter:blur(10px);transition:var(--tr)}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.stat-card-main{top:0;left:0;right:0;
+  background:linear-gradient(135deg,var(--card) 0%,var(--card2) 100%);
+  border-color:rgba(0,230,118,0.2)}
+.stat-card-2{bottom:80px;right:-20px;width:210px}
+.stat-card-3{bottom:0;left:20px;width:220px}
+.stat-label{font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.stat-value{font-size:2rem;font-weight:800;color:var(--accent)}
+.stat-sub{font-size:0.8rem;color:var(--text2)}
+.cert-list{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.cert-item{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text2)}
+.cert-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* ─── SKILLS ────────────────────────────────────────────────────────── */
+#skills{background:var(--bg2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.skill-card{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;transition:var(--tr);
+  position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent));
+  transform:scaleX(0);transform-origin:left;transition:transform var(--tr)}
+.skill-card:hover::before{transform:scaleX(1)}
+.skill-card:hover{border-color:rgba(0,230,118,0.35);transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.35)}
+.skill-card-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.skill-icon{width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
+.skill-card-title{font-weight:700;font-size:0.95rem;color:var(--text)}
+.skill-card-sub{font-size:0.78rem;color:var(--text3);margin-top:2px}
+.tree{list-style:none;padding:0}
+.tree>li{position:relative;padding:4px 0 4px 20px;
+  font-size:0.82rem;color:var(--text2);line-height:1.5;
+  border-left:1px solid var(--border)}
+.tree>li::before{content:'';position:absolute;left:0;top:50%;
+  width:12px;height:1px;background:var(--border)}
+.tree>li:last-child{border-left-color:transparent}
+.tree>li:last-child::after{content:'';position:absolute;left:0;top:0;
+  width:1px;height:50%;background:var(--border)}
+.tree .tag{display:inline-block;background:rgba(0,200,83,0.12);
+  border:1px solid rgba(0,200,83,0.25);border-radius:4px;
+  padding:1px 7px;font-size:0.7rem;color:var(--accent);
+  font-family:'JetBrains Mono',monospace;margin-left:4px}
+.tree-toggle{cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px;color:var(--text)}
+.tree-toggle .chevron{font-size:0.6rem;color:var(--accent);transition:transform 0.25s}
+.tree-toggle.open .chevron{transform:rotate(90deg)}
+.tree-children{display:none;padding-left:12px;margin-top:4px}
+.tree-children.open{display:block}
+.tree-children li{font-size:0.8rem;color:var(--text2);padding:3px 0 3px 16px;
+  border-left:1px solid var(--border);position:relative}
+.tree-children li::before{content:'';position:absolute;left:0;top:50%;
+  width:10px;height:1px;background:var(--border)}
+
+/* ─── PROJECTS ──────────────────────────────────────────────────────── */
+#projects{background:var(--bg)}
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;
+  width:2px;background:linear-gradient(to bottom,var(--accent2),var(--accent3),transparent)}
+.timeline-item{position:relative;margin-bottom:32px}
+.timeline-dot{position:absolute;left:-38px;top:8px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--accent);border:3px solid var(--bg);
+  box-shadow:0 0 12px var(--accent)}
+.timeline-card{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:28px;transition:var(--tr)}
+.timeline-card:hover{border-color:rgba(0,230,118,0.3);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.timeline-header{display:flex;align-items:flex-start;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;margin-bottom:8px}
+.timeline-title{font-weight:700;font-size:1.05rem;color:var(--text)}
+.timeline-company{color:var(--accent);font-size:0.85rem;font-weight:600;margin-top:4px}
+.timeline-date{font-size:0.75rem;color:var(--accent);font-weight:600;
+  background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.2);
+  padding:4px 12px;border-radius:100px;white-space:nowrap;align-self:flex-start}
+.timeline-desc{font-size:0.87rem;color:var(--text2);margin:8px 0 16px;line-height:1.7}
+.accordion-btn{display:flex;align-items:center;gap:8px;
+  background:rgba(0,200,83,0.08);border:1px solid var(--border);
+  border-radius:8px;padding:8px 14px;font-size:0.8rem;color:var(--accent);
+  font-weight:600;cursor:pointer;transition:var(--tr);margin-bottom:12px;
+  width:100%;font-family:'Inter',sans-serif}
+.accordion-btn:hover{background:rgba(0,200,83,0.15);border-color:var(--accent)}
+.accordion-btn .chevron{margin-left:auto;font-size:0.6rem;transition:transform 0.25s}
+.accordion-btn.open .chevron{transform:rotate(180deg)}
+.accordion-body{display:none}
+.accordion-body.open{display:block}
+.bullet-list{list-style:none;padding:0}
+.bullet-list li{display:flex;gap:10px;align-items:flex-start;
+  padding:6px 0;font-size:0.85rem;color:var(--text2);line-height:1.65;
+  border-bottom:1px solid rgba(255,255,255,0.04)}
+.bullet-list li:last-child{border-bottom:none}
+.bullet-list li::before{content:"▸";color:var(--accent);flex-shrink:0;margin-top:2px}
+.bullet-list strong{color:var(--text)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag-pill{background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.25);
+  border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--accent);
+  font-family:'JetBrains Mono',monospace}
+
+/* ─── PROJECT STATS TABLE ───────────────────────────────────────────── */
+.proj-table-wrap{overflow-x:auto;margin-top:16px}
+.proj-table{width:100%;border-collapse:collapse;font-size:0.8rem}
+.proj-table th{background:var(--bg3);color:var(--accent);font-weight:700;
+  padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em}
+.proj-table td{padding:7px 12px;color:var(--text2);border-bottom:1px solid rgba(255,255,255,0.04)}
+.proj-table tr:last-child td{border-bottom:none}
+.proj-table tr:hover td{background:rgba(0,230,118,0.04);color:var(--text)}
+.proj-table .num{font-family:'JetBrains Mono',monospace;color:var(--accent4)}
+.proj-table .total-row td{color:var(--accent);font-weight:700;border-top:1px solid var(--border)}
+
+/* ─── EXPERIENCE ────────────────────────────────────────────────────── */
+#experience{background:var(--bg2)}
+
+/* ─── CAPSTONE ──────────────────────────────────────────────────────── */
+#capstone{background:var(--bg)}
+.capstone-card{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:36px;position:relative;overflow:hidden}
+.capstone-card::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,230,118,0.05) 0%,transparent 60%);pointer-events:none}
+.capstone-badge{display:inline-flex;align-items:center;gap:6px;
+  background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);
+  border-radius:6px;padding:4px 12px;font-size:0.72rem;color:var(--accent3);
+  font-weight:600;margin-bottom:14px}
+.capstone-title{font-size:1.3rem;font-weight:800;margin-bottom:10px;color:var(--text)}
+.capstone-desc{font-size:0.9rem;color:var(--text2);line-height:1.8;margin-bottom:20px}
+.capstone-specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:20px}
+.spec-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.spec-label{font-size:0.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.spec-value{font-size:0.9rem;font-weight:700;color:var(--text)}
+
+/* ─── EDUCATION ─────────────────────────────────────────────────────── */
+#education{background:var(--bg2)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.edu-card{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:28px;transition:var(--tr)}
+.edu-card:hover{border-color:rgba(0,230,118,0.25);transform:translateY(-2px)}
+.edu-degree{font-weight:700;font-size:1rem;color:var(--text);margin-bottom:4px}
+.edu-school{color:var(--accent);font-size:0.88rem;font-weight:600;margin-bottom:4px}
+.edu-year{font-size:0.75rem;color:var(--text3);margin-bottom:14px}
+.edu-modules{display:flex;flex-wrap:wrap;gap:6px}
+.edu-module{background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:3px 10px;font-size:0.75rem;color:var(--text2)}
+
+/* ─── ACHIEVEMENTS ──────────────────────────────────────────────────── */
+#achievements{background:var(--bg)}
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.ach-card{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;display:flex;align-items:flex-start;gap:16px;transition:var(--tr)}
+.ach-card:hover{border-color:rgba(245,158,11,0.4);transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(0,0,0,0.25)}
+.ach-icon{font-size:1.8rem;flex-shrink:0}
+.ach-title{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:4px}
+.ach-org{font-size:0.78rem;color:var(--accent3);font-weight:600;margin-bottom:4px}
+.ach-desc{font-size:0.8rem;color:var(--text2);line-height:1.5}
+
+/* ─── CONTACT ───────────────────────────────────────────────────────── */
+#contact{background:var(--bg2);text-align:center}
+.contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:32px}
+.contact-link{display:flex;align-items:center;gap:8px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:12px 20px;color:var(--text2);
+  font-size:0.87rem;font-weight:500;transition:var(--tr)}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.contact-link i{color:var(--accent)}
+
+/* ─── FOOTER ────────────────────────────────────────────────────────── */
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
+.footer-name{font-size:1.4rem;font-weight:800;margin-bottom:6px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.footer-tagline{font-size:0.82rem;color:var(--text3);margin-bottom:20px}
+.footer-copy{font-size:0.72rem;color:var(--text3);margin-top:24px}
+
+/* ─── FADE-IN ───────────────────────────────────────────────────────── */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────── */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .edu-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .skills-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">JM</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#capstone">Capstone</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#achievements">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="wrapper">
+    <div class="hero-grid">
+
+      <!-- Left -->
+      <div>
+        <div class="hero-badge">Open to New Opportunities</div>
+        <h1 class="hero-name">James<br/><span>Moatlhudi</span></h1>
+        <p class="hero-title">Electrical Engineer &nbsp;·&nbsp; Renewable Energy Specialist &nbsp;·&nbsp; <strong>MV(11kV) Infrastructure</strong></p>
+        <p class="hero-summary">
+          BEng Electrical Engineering graduate (University of Pretoria) specialising in C&amp;I solar PV and BESS system design.
+          Experienced across the full project lifecycle — from technical proposals and energy simulations through to detailed
+          engineering drawings and commissioned installations. Passionate about renewable energy, data science, and building
+          intelligent software solutions.
+        </p>
+        <div class="hero-contacts">
+          <a class="contact-chip" href="mailto:u17170312@tuks.co.za"><i class="fa-solid fa-envelope"></i>u17170312@tuks.co.za</a>
+          <a class="contact-chip" href="tel:+27636262882"><i class="fa-solid fa-phone"></i>+27 63 626 2882</a>
+          <a class="contact-chip" href="https://www.linkedin.com/in/james-moatlhudi-712518152" target="_blank"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
+          <span class="contact-chip"><i class="fa-solid fa-location-dot"></i>Greenstone Hill, Gauteng</span>
+        </div>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#projects"><i class="fa-solid fa-solar-panel"></i>View Projects</a>
+          <a class="btn-secondary" href="#contact"><i class="fa-solid fa-envelope"></i>Get in Touch</a>
+        </div>
+      </div>
+
+      <!-- Right — stat cards -->
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="stat-card stat-card-main">
+            <div class="stat-label">Current Role</div>
+            <div style="font-size:1.1rem;font-weight:700;margin:4px 0 2px;">Junior Design Engineer</div>
+            <div style="font-size:0.8rem;color:var(--text3);">Nesa Power · Nov 2024 – Present</div>
+            <div class="cert-list">
+              <div class="cert-item"><div class="cert-dot" style="background:var(--accent)"></div>BEng Electrical Engineering — University of Pretoria</div>
+              <div class="cert-item"><div class="cert-dot" style="background:var(--accent3)"></div>Power Systems Major · 1 kW HVDC Inverter Capstone</div>
+              <div class="cert-item"><div class="cert-dot" style="background:var(--accent4)"></div>Python · MATLAB · SQL · Power BI · AutoCAD</div>
+              <div class="cert-item"><div class="cert-dot" style="background:var(--accent5)"></div>ECSA/CESA Registration Target: 2027–2029</div>
+            </div>
+          </div>
+          <div class="stat-card stat-card-2">
+            <div class="stat-label">Total ESS Designed</div>
+            <div class="stat-value">52.41 MWh</div>
+            <div class="stat-sub">Across 65+ proposals</div>
+          </div>
+          <div class="stat-card stat-card-3">
+            <div class="stat-label">Total PV Designed</div>
+            <div class="stat-value">322.445 MWp</div>
+            <div class="stat-sub">Sunspec Solar &amp; Nesa Power</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ════════════════════════════════════════════════════════════ -->
+<section id="skills">
+  <div class="wrapper">
+    <div class="section-label fade-in"><i class="fa-solid fa-layer-group"></i> Capabilities</div>
+    <h2 class="section-title fade-in">Technical Skills</h2>
+    <p class="section-sub fade-in">Click any category to explore the full skill tree</p>
+    <div class="skills-grid">
+
+      <!-- Renewable Energy -->
+      <div class="skill-card fade-in">
+        <div class="skill-card-header">
+          <div class="skill-icon" style="background:rgba(0,230,118,0.12)"><i class="fa-solid fa-solar-panel" style="color:var(--accent)"></i></div>
+          <div><div class="skill-card-title">Renewable Energy Design</div><div class="skill-card-sub">Solar PV & BESS systems</div></div>
+        </div>
+        <ul class="tree">
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Solar PV Design</span>
+            <ul class="tree-children">
+              <li>C&amp;I Solar System Design <span class="tag">Rooftop &amp; Ground</span></li>
+              <li>PVsyst Simulations <span class="tag">Yield Analysis</span></li>
+              <li>Helioscope Simulations <span class="tag">3D Modelling</span></li>
+              <li>Energy Tool Base Simulations</li>
+              <li>Technical Proposals (PV &amp; BESS)</li>
+            </ul>
+          </li>
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Battery Energy Storage</span>
+            <ul class="tree-children">
+              <li>BESS Sizing &amp; Integration</li>
+              <li>Hybrid PV+BESS System Design</li>
+              <li>Demand Charge Optimisation</li>
+            </ul>
+          </li>
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Engineering Drawings</span>
+            <ul class="tree-children">
+              <li>AutoCAD Detailed Engineering Drawings</li>
+              <li>Single Line Diagrams (SLDs)</li>
+              <li>Layout &amp; Stringing Plans</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Power Systems & Hardware -->
+      <div class="skill-card fade-in">
+        <div class="skill-card-header">
+          <div class="skill-icon" style="background:rgba(245,158,11,0.12)"><i class="fa-solid fa-bolt" style="color:var(--accent3)"></i></div>
+          <div><div class="skill-card-title">Power Systems & Hardware</div><div class="skill-card-sub">Embedded systems & circuit design</div></div>
+        </div>
+        <ul class="tree">
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Power Electronics</span>
+            <ul class="tree-children">
+              <li>Multilevel Inverter Design <span class="tag">HVDC</span></li>
+              <li>PCB Design &amp; Construction</li>
+              <li>Vero Board Circuit Design</li>
+              <li>LT Spice Simulation</li>
+              <li>PSIM Simulation</li>
+            </ul>
+          </li>
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Embedded Systems</span>
+            <ul class="tree-children">
+              <li>FPGAs <span class="tag">VHDL</span></li>
+              <li>PIC18 8-bit Microcontrollers</li>
+              <li>Piccolo C2000 32-bit DSP</li>
+              <li>MPLAB X IDE</li>
+              <li>C / C++ Firmware</li>
+            </ul>
+          </li>
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Simulation Tools</span>
+            <ul class="tree-children">
+              <li>MATLAB &amp; Simulink</li>
+              <li>Quarters</li>
+              <li>Solidworks</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Software & Data -->
+      <div class="skill-card fade-in">
+        <div class="skill-card-header">
+          <div class="skill-icon" style="background:rgba(56,189,248,0.12)"><i class="fa-brands fa-python" style="color:var(--accent4)"></i></div>
+          <div><div class="skill-card-title">Software & Data</div><div class="skill-card-sub">Python, ML, BI & web development</div></div>
+        </div>
+        <ul class="tree">
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Programming</span>
+            <ul class="tree-children">
+              <li>Python <span class="tag">Primary</span></li>
+              <li>MATLAB</li>
+              <li>C / C++</li>
+              <li>SQL</li>
+              <li>HTML / JavaScript</li>
+              <li>VHDL</li>
+            </ul>
+          </li>
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Data & ML</span>
+            <ul class="tree-children">
+              <li>Machine Learning Model Development</li>
+              <li>Data Analysis &amp; Reporting</li>
+              <li>Power BI Dashboards</li>
+              <li>Git &amp; Version Control</li>
+            </ul>
+          </li>
+          <li><span class="tree-toggle" onclick="toggleTree(this)"><i class="fa-solid fa-chevron-right chevron"></i> Web & App Dev</span>
+            <ul class="tree-children">
+              <li>Website Development</li>
+              <li>App Development (Hobby)</li>
+              <li>AI Model Development (Hobby)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Professional Skills -->
+      <div class="skill-card fade-in">
+        <div class="skill-card-header">
+          <div class="skill-icon" style="background:rgba(167,139,250,0.12)"><i class="fa-solid fa-users" style="color:var(--accent5)"></i></div>
+          <div><div class="skill-card-title">Professional Skills</div><div class="skill-card-sub">Communication, leadership & delivery</div></div>
+        </div>
+        <ul class="tree">
+          <li>Technical Proposal Writing</li>
+          <li>LaTeX &amp; MS Word Report Writing</li>
+          <li>Project Management (Conception to Completion)</li>
+          <li>Educational Video Production</li>
+          <li>Public Speaking &amp; Tutoring</li>
+          <li>Leadership &amp; Team Collaboration</li>
+          <li>Microsoft Excel &amp; PowerPoint</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══════════════════════════════════════════════════════════ -->
+<section id="projects">
+  <div class="wrapper">
+    <div class="section-label fade-in"><i class="fa-solid fa-folder-open"></i> Work</div>
+    <h2 class="section-title fade-in">Project Portfolio</h2>
+    <p class="section-sub fade-in">Solar PV &amp; BESS proposals, designs, and commissioned installations</p>
+    <div class="timeline">
+
+      <!-- Nesa Power Projects -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">C&amp;I Solar PV Design Portfolio — Nesa Power</div>
+              <div class="timeline-company">Nesa Power · Junior Design Engineer · Presales &amp; Commissioned</div>
+            </div>
+            <div class="timeline-date">Nov 2024 – Present</div>
+          </div>
+          <p class="timeline-desc">
+            Designed and delivered technical proposals and detailed engineering drawings for a diverse portfolio of
+            commercial &amp; industrial solar PV systems across South Africa and sub-Saharan Africa — ranging from
+            small rooftop installations to large-scale utility projects. Also led the design and construction of
+            five commissioned installations generating direct revenue.
+          </p>
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <i class="fa-solid fa-list-ul"></i> View Presales Proposals (37 projects) <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <div class="accordion-body">
+            <div class="proj-table-wrap">
+              <table class="proj-table">
+                <thead><tr><th>#</th><th>Project</th><th>PV Size (kWp)</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Africrest – Centurion Office Park</td><td class="num">207</td></tr>
+                  <tr><td>2</td><td>Snowsoft – 60 Rigger Road</td><td class="num">1,116</td></tr>
+                  <tr><td>3</td><td>Lake Club Apartments</td><td class="num">139</td></tr>
+                  <tr><td>4</td><td>Engen Thorntree South</td><td class="num">62</td></tr>
+                  <tr><td>5</td><td>Engen Thorntree ZZ</td><td class="num">104</td></tr>
+                  <tr><td>6</td><td>Auto Industrial Group</td><td class="num">424</td></tr>
+                  <tr><td>7</td><td>Bronkhorstspruit Farm</td><td class="num">194,627</td></tr>
+                  <tr><td>8</td><td>Build It – Swaziland</td><td class="num">139</td></tr>
+                  <tr><td>9</td><td>Cederberg Lamberts Bay</td><td class="num">2,511</td></tr>
+                  <tr><td>10</td><td>Choice Foods</td><td class="num">63.4</td></tr>
+                  <tr><td>11</td><td>DARES Nigeria</td><td class="num">8,007</td></tr>
+                  <tr><td>12</td><td>Finstone Granite Quarry Rustenburg</td><td class="num">1,232</td></tr>
+                  <tr><td>13</td><td>Food Lovers Tzaneen</td><td class="num">387</td></tr>
+                  <tr><td>14</td><td>I&amp;J Danger Point</td><td class="num">3,137</td></tr>
+                  <tr><td>15</td><td>Kangra Coal</td><td class="num">3,998</td></tr>
+                  <tr><td>16</td><td>Laserworx</td><td class="num">65.9</td></tr>
+                  <tr><td>17</td><td>Lonsa House</td><td class="num">153 + 250 kWh BESS</td></tr>
+                  <tr><td>18</td><td>Makro Alberton</td><td class="num">514</td></tr>
+                  <tr><td>19</td><td>Makro Vaal</td><td class="num">719</td></tr>
+                  <tr><td>20</td><td>MassMart – Builders Warehouse Alberton</td><td class="num">109</td></tr>
+                  <tr><td>21</td><td>MassMart – Builders Warehouse StrubensValley</td><td class="num">109</td></tr>
+                  <tr><td>22</td><td>Meadowview East</td><td class="num">116</td></tr>
+                  <tr><td>23</td><td>Milpark Mews</td><td class="num">207</td></tr>
+                  <tr><td>24</td><td>Opal Student Primula House</td><td class="num">70.2</td></tr>
+                  <tr><td>25</td><td>Rosslyn (RH Managers)</td><td class="num">2,112</td></tr>
+                  <tr><td>26</td><td>Massmart – Makro Riversands</td><td class="num">566</td></tr>
+                  <tr><td>27</td><td>The Encore Phase 2</td><td class="num">284</td></tr>
+                  <tr><td>28</td><td>The Paddocks</td><td class="num">1,302</td></tr>
+                  <tr><td>29</td><td>TigerTex Expansion</td><td class="num">258</td></tr>
+                  <tr><td>30</td><td>Uganda NPI Agoga</td><td class="num">22,386</td></tr>
+                  <tr><td>31</td><td>Uganda NPI Misozi</td><td class="num">20,412</td></tr>
+                  <tr><td>32</td><td>Waterfall Crossing</td><td class="num">144</td></tr>
+                  <tr><td>33</td><td>Westend Claybrick Building</td><td class="num">874</td></tr>
+                  <tr><td>34</td><td>Westend Rooftile Building</td><td class="num">333</td></tr>
+                  <tr><td>35</td><td>Woodmead Country Club</td><td class="num">716</td></tr>
+                  <tr><td>36</td><td>Zambezi Sentrum</td><td class="num">104</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <button class="accordion-btn" onclick="toggleAccordion(this)" style="margin-top:8px">
+            <i class="fa-solid fa-hammer"></i> View Commissioned &amp; Built Projects (5 installations) <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <div class="accordion-body">
+            <div class="proj-table-wrap">
+              <table class="proj-table">
+                <thead><tr><th>#</th><th>Project</th><th>PV Size (kWp)</th><th>BESS (kWh)</th><th>Revenue (ZAR)</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>The Silo</td><td class="num">213.39</td><td class="num">—</td><td class="num">R 257,970</td></tr>
+                  <tr><td>2</td><td>The Encore</td><td class="num">60.18</td><td class="num">—</td><td class="num">R 156,420</td></tr>
+                  <tr><td>3</td><td>The Legacy Phase 2</td><td class="num">316.83</td><td class="num">—</td><td class="num">R 360,090</td></tr>
+                  <tr><td>4</td><td>Hillaldam</td><td class="num">184.5</td><td class="num">108</td><td class="num">R 128,422</td></tr>
+                  <tr><td>5</td><td>Nala</td><td class="num">358.13</td><td class="num">—</td><td class="num">R 23,140</td></tr>
+                  <tr><td>6</td><td>Snowsoft</td><td class="num">1,554.96</td><td class="num">—</td><td class="num">Under Construction</td></tr>
+                  <tr class="total-row"><td colspan="2">Total PV &amp; BESS Installed</td><td class="num">2688 kWp</td><td class="num">108 kWh</td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag-pill">PVsyst</span><span class="tag-pill">AutoCAD</span>
+            <span class="tag-pill">C&amp;I Solar</span><span class="tag-pill">BESS</span><span class="tag-pill">SLD Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sunspec Solar Projects -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot" style="background:var(--accent3);box-shadow:0 0 12px var(--accent3)"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Solar PV &amp; BESS Proposal Portfolio — Sunspec Solar</div>
+              <div class="timeline-company">Sunspec Solar · Electrical Engineer (Contract) · Presales &amp; Constructed</div>
+            </div>
+            <div class="timeline-date">Jan 2024 – Oct 2024</div>
+          </div>
+          <p class="timeline-desc">
+            Delivered 40+ technical proposals and energy simulations for solar PV and BESS projects across South Africa —
+            spanning retail malls, agricultural operations, cold storage facilities, and large-scale utility plants. Also led the design and construction of
+            four commissioned installations ensuring energy security for the clients.
+          </p>
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            <i class="fa-solid fa-list-ul"></i> View Presales Proposals (40 projects) <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <div class="accordion-body">
+            <div class="proj-table-wrap">
+              <table class="proj-table">
+                <thead><tr><th>#</th><th>Project</th><th>PV (kWp)</th><th>BESS (kWh)</th><th>Project Cost (ZAR)</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>20 Regency</td><td class="num">105.05</td><td class="num">200</td><td class="num">R 3,628,813</td></tr>
+                  <tr><td>2</td><td>Abland – Mall at Katlehong</td><td class="num">450.45</td><td class="num">800</td><td class="num">R 14,056,648</td></tr>
+                  <tr><td>3</td><td>Boma Meats Market</td><td class="num">201.3</td><td class="num">400</td><td class="num">R 4,387,048</td></tr>
+                  <tr><td>4</td><td>CCG</td><td class="num">—</td><td class="num">800</td><td class="num">R 5,918,027</td></tr>
+                  <tr><td>5</td><td>Dalein Agri Plan</td><td class="num">239</td><td class="num">372</td><td class="num">R 6,397,872</td></tr>
+                  <tr><td>6</td><td>Die Oord</td><td class="num">200.2</td><td class="num">400</td><td class="num">R 4,702,961</td></tr>
+                  <tr><td>7</td><td>Eden View</td><td class="num">752</td><td class="num">2,000</td><td class="num">R 4,571,945</td></tr>
+                  <tr><td>8</td><td>Engen Rayton</td><td class="num">39.6</td><td class="num">153</td><td class="num">R 2,045,550</td></tr>
+                  <tr><td>9</td><td>Gert Farmer</td><td class="num">108.9</td><td class="num">200</td><td class="num">R 2,650,859</td></tr>
+                  <tr><td>10</td><td>Harrismith Checkers Mall</td><td class="num">649</td><td class="num">1,200</td><td class="num">R 18,586,115</td></tr>
+                  <tr><td>11</td><td>Moyo</td><td class="num">12</td><td class="num">112</td><td class="num">R 1,451,971</td></tr>
+                  <tr><td>12</td><td>OCWEN</td><td class="num">37.4</td><td class="num">114.4</td><td class="num">R 2,306,561</td></tr>
+                  <tr><td>13</td><td>Park Manor</td><td class="num">108.9</td><td class="num">400</td><td class="num">R 4,662,953</td></tr>
+                  <tr><td>14</td><td>Raven Manor</td><td class="num">39.1</td><td class="num">200</td><td class="num">R 2,494,096</td></tr>
+                  <tr><td>15</td><td>Sunglide Mall Mossel Bay</td><td class="num">158.4</td><td class="num">1,000</td><td class="num">R 12,608,894</td></tr>
+                  <tr><td>16</td><td>Techno Padel</td><td class="num">83.6</td><td class="num">200</td><td class="num">R 2,005,448</td></tr>
+                  <tr><td>17</td><td>Terblanche Transport</td><td class="num">475.2</td><td class="num">1,075</td><td class="num">R 14,136,441</td></tr>
+                  <tr><td>18</td><td>Thirst Bar Services</td><td class="num">39.6</td><td class="num">100</td><td class="num">R 1,138,351</td></tr>
+                  <tr><td>19</td><td>Winders</td><td class="num">235.4</td><td class="num">600</td><td class="num">R 7,162,662</td></tr>
+                  <tr><td>20</td><td>Wits Health Consortium</td><td class="num">191.95</td><td class="num">400</td><td class="num">R 5,243,905</td></tr>
+                  <tr><td>21</td><td>Van Wyk Broedery (Real Chicks)</td><td class="num">283.8</td><td class="num">1,290</td><td class="num">R 9,837,005</td></tr>
+                  <tr><td>22</td><td>SRCC Hermitage</td><td class="num">956.45</td><td class="num">2,000</td><td class="num">R 30,849,428</td></tr>
+                  <tr><td>23</td><td>SRCC Cold Storage &amp; Degreening</td><td class="num">1,940.95</td><td class="num">4,000</td><td class="num">R 71,007,645</td></tr>
+                  <tr><td>24</td><td>COENG Montagu PV Plant</td><td class="num">2,178</td><td class="num">6,000</td><td class="num">R 183,318,990</td></tr>
+                  <tr><td>25</td><td>COENG Ashton PV Plant</td><td class="num">4,087</td><td class="num">10,000</td><td class="num">R 278,271,422</td></tr>
+                  <tr><td>26</td><td>Nooidgfedatch</td><td class="num">4,000</td><td class="num">1,460</td><td class="num">R 47,526,055</td></tr>
+                  <tr><td>27</td><td>Mall at Emba</td><td class="num">559.2</td><td class="num">1,200</td><td class="num">R 11,750,893</td></tr>
+                  <tr><td>28</td><td>COENG Phillip &amp; Dawie</td><td class="num">2,000</td><td class="num">6,000</td><td class="num">R 78,760,065</td></tr>
+                  <tr><td>29</td><td>Mall at Reds</td><td class="num">1,040</td><td class="num">2,000</td><td class="num">R 40,595,417</td></tr>
+                  <tr><td>30</td><td>Brother CISA (PV Only)</td><td class="num">800.28</td><td class="num">—</td><td class="num">R 9,397,809</td></tr>
+                  <tr><td>31</td><td>Brother CISA (Large)</td><td class="num">6,000</td><td class="num">—</td><td class="num">R 71,364,587</td></tr>
+                  <tr><td>32</td><td>Heintzmann</td><td class="num">46.6</td><td class="num">215</td><td class="num">R 3,303,300</td></tr>
+                  <tr><td>33</td><td>Dynamic Machinery</td><td class="num">15</td><td class="num">114.4</td><td class="num">R 2,107,373</td></tr>
+                  <tr><td>34</td><td>Heavy Feather Trading 0.5CC</td><td class="num">10</td><td class="num">41</td><td class="num">R 793,714</td></tr>
+                  <tr><td>35</td><td>Brugplaas</td><td class="num">654.9</td><td class="num">314.6</td><td class="num">R 4,214,940</td></tr>
+                  <tr><td>36</td><td>Drienfontein</td><td class="num">349.65</td><td class="num">786.5</td><td class="num">R 10,282,079</td></tr>
+                  <tr><td>37</td><td>La Priere</td><td class="num">239.76</td><td class="num">786.5</td><td class="num">R 9,618,132</td></tr>
+                  <tr><td>38</td><td>Le Domaine</td><td class="num">57.72</td><td class="num">286</td><td class="num">R 4,029,509</td></tr>
+                  <tr><td>39</td><td>Mall at Carnival</td><td class="num">4,521.8</td><td class="num">4,000</td><td class="num">—</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <button class="accordion-btn" onclick="toggleAccordion(this)" style="margin-top:8px">
+            <i class="fa-solid fa-hammer"></i> View Designed &amp; Constructed Projects (4 installations) <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+          <div class="accordion-body">
+            <div class="proj-table-wrap">
+              <table class="proj-table">
+                <thead><tr><th>#</th><th>Project</th><th>PV (kWp)</th><th>BESS (kWh)</th><th>Project Cost (ZAR)</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>CLS</td><td class="num">605</td><td class="num">1,200</td><td class="num">R 11,052,462</td></tr>
+                  <tr><td>2</td><td>UNHCR</td><td class="num">176.6</td><td class="num">300</td><td class="num">R 3,058,741</td></tr>
+                  <tr><td>3</td><td>Hacks</td><td class="num">50</td><td class="num">100</td><td class="num">R 1,207,251</td></tr>
+                  <tr><td>4</td><td>Fleisherei</td><td class="num">500</td><td class="num">—</td><td class="num">R 6,040,257</td></tr>
+                  <tr class="total-row"><td colspan="2">Portfolio Totals</td><td class="num">35.2 MWp</td><td class="num">52.02 MWh</td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag-pill">Helioscope</span><span class="tag-pill">Energy Tool Base</span>
+            <span class="tag-pill">AutoCAD</span><span class="tag-pill">BESS</span><span class="tag-pill">Technical Proposals</span>
+            <span class="tag-pill">C&amp;I Solar</span><span class="tag-pill">Utility Scale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opti-Num Solutions -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot" style="background:var(--accent5);box-shadow:0 0 12px var(--accent5)"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Software Development &amp; ML Internship</div>
+              <div class="timeline-company">Opti-Num Solutions · Engineering Intern</div>
+            </div>
+            <div class="timeline-date">Jun 2019 – Jan 2020</div>
+          </div>
+          <p class="timeline-desc">
+            Gained hands-on experience in software development, data analytics, and machine learning during an engineering
+            internship — building dashboards, ML models, and promotional content using MATLAB and Python.
+          </p>
+          <ul class="bullet-list">
+            <li><strong>Machine Learning:</strong> Built and evaluated ML models for engineering data analysis tasks.</li>
+            <li><strong>Data Dashboards:</strong> Designed and built data reports and interactive dashboards.</li>
+            <li><strong>Software Development:</strong> Developed software solutions in MATLAB.</li>
+            <li><strong>Version Control:</strong> Applied Git and version control practices in a professional environment.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag-pill">MATLAB</span><span class="tag-pill">Machine Learning</span>
+            <span class="tag-pill">Data Analysis</span><span class="tag-pill">Git</span><span class="tag-pill">Dashboards</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ════════════════════════════════════════════════════════ -->
+<section id="experience">
+  <div class="wrapper">
+    <div class="section-label fade-in"><i class="fa-solid fa-briefcase"></i> Career</div>
+    <h2 class="section-title fade-in">Professional Experience</h2>
+    <p class="section-sub fade-in">From tutoring and internships to full-time engineering roles</p>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Junior Design Engineer</div>
+              <div class="timeline-company">Nesa Power</div>
+            </div>
+            <div class="timeline-date">Nov 2024 – Present</div>
+          </div>
+          <ul class="bullet-list">
+            <li>Designs and delivers C&amp;I solar PV systems from initial concept through to detailed engineering drawings and commissioned installation.</li>
+            <li>Performs PVsyst energy yield simulations to validate system performance and support technical proposals.</li>
+            <li>Produces AutoCAD detailed engineering drawings including SLDs, layout plans, and stringing diagrams.</li>
+            <li>Contributed to 6 constructed installations totalling 2688 kWp PV and 108kWh ESS.</li>
+            <li>Contributed to 5 commissioned installations and 37+ presales proposals across South Africa and sub-Saharan Africa.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot" style="background:var(--accent3);box-shadow:0 0 12px var(--accent3)"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Electrical Engineer (Contract)</div>
+              <div class="timeline-company">Sunspec Solar</div>
+            </div>
+            <div class="timeline-date">Jan 2024 – Oct 2024</div>
+          </div>
+          <ul class="bullet-list">
+            <li>Authored technical proposals for PV and BESS projects ranging from small C&amp;I rooftops to utility-scale plants exceeding 4 MWp.</li>
+            <li>Performed Helioscope and Energy Tool Base simulations for yield analysis and system optimisation.</li>
+            <li>Produced AutoCAD detailed engineering drawings for all proposals and constructed projects.</li>
+            <li>Contributed to 4 constructed installations totalling 1331.6 kWp PV and 1600 kWh ESS.</li>
+            <li>Contributed to 4 commissioned installations and 40+ presales proposals across South Africa.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot" style="background:var(--accent4);box-shadow:0 0 12px var(--accent4)"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Practical Assistant</div>
+              <div class="timeline-company">University of Pretoria</div>
+            </div>
+            <div class="timeline-date">Jul 2023 – Nov 2023</div>
+          </div>
+          <ul class="bullet-list">
+            <li>Assisted lecturers with marking of assessments and practical sessions.</li>
+            <li>Supported students during laboratory practicals, reinforcing theoretical concepts through hands-on guidance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot" style="background:var(--accent5);box-shadow:0 0 12px var(--accent5)"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Developer (Voluntary)</div>
+              <div class="timeline-company">LearnSmart Education</div>
+            </div>
+            <div class="timeline-date">Jan 2021 – Jan 2022</div>
+          </div>
+          <ul class="bullet-list">
+            <li>Led website development initiatives as head of the technology department.</li>
+            <li>Drove digital strategy and technical implementation for an educational platform.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot" style="background:var(--accent3);box-shadow:0 0 12px var(--accent3)"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Engineering Intern</div>
+              <div class="timeline-company">Opti-Num Solutions</div>
+            </div>
+            <div class="timeline-date">Jun 2019 – Jan 2020</div>
+          </div>
+          <ul class="bullet-list">
+            <li>Developed software solutions in MATLAB and built machine learning models for engineering data tasks.</li>
+            <li>Designed data reports and dashboards; applied Git version control in a professional team environment.</li>
+            <li>Produced promotional video content for engineering software products.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot" style="background:var(--text3);box-shadow:0 0 8px var(--text3)"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-title">Engineering Tutor</div>
+              <div class="timeline-company">123Tutors</div>
+            </div>
+            <div class="timeline-date">Jun 2017 – Jun 2022</div>
+          </div>
+          <ul class="bullet-list">
+            <li>Produced educational video content covering electrical engineering modules for online learners.</li>
+            <li>Tutored students across a range of engineering subjects over a 5-year period.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CAPSTONE ══════════════════════════════════════════════════════════ -->
+<section id="capstone">
+  <div class="wrapper">
+    <div class="section-label fade-in"><i class="fa-solid fa-microchip"></i> Final Year</div>
+    <h2 class="section-title fade-in">Capstone Project</h2>
+    <p class="section-sub fade-in">BEng Electrical Engineering — University of Pretoria</p>
+    <div class="capstone-card fade-in">
+      <div class="capstone-badge"><i class="fa-solid fa-trophy"></i> Final Year Project · Power Systems Major</div>
+      <div class="capstone-title">1 kW Multilevel Inverter for HVDC Systems</div>
+      <div class="capstone-desc">
+        Designed, built, and deployed a multilevel inverter for a High Voltage Direct Current (HVDC) system —
+        including full PCB hardware construction and execution of a control algorithm on an embedded processing platform.
+        The core challenge was designing a <strong>1 kW inverter</strong> capable of powering regular household devices
+        using lower-voltage semiconductor switches, requiring innovative multilevel topology selection and precise
+        gate-drive control to achieve the required output voltage and waveform quality.
+      </div>
+      <ul class="bullet-list">
+        <li><strong>Hardware Design:</strong> Full PCB layout and construction from schematic to physical board.</li>
+        <li><strong>Control Algorithm:</strong> Implemented and validated a switching control algorithm on an embedded DSP platform.</li>
+        <li><strong>Power Electronics:</strong> Applied multilevel inverter topology to achieve high-voltage output from low-voltage switches.</li>
+        <li><strong>System Validation:</strong> Tested and verified the inverter powering real household loads at rated output.</li>
+      </ul>
+      <div class="capstone-specs">
+        <div class="spec-card">
+          <div class="spec-label">Rated Power</div>
+          <div class="spec-value">1 kW</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Application</div>
+          <div class="spec-value">HVDC System</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Topology</div>
+          <div class="spec-value">Multilevel Inverter</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Platform</div>
+          <div class="spec-value">Embedded DSP</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Hardware</div>
+          <div class="spec-value">Custom PCB</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Output</div>
+          <div class="spec-value">Household AC</div>
+        </div>
+      </div>
+      <div class="tags" style="margin-top:20px">
+        <span class="tag-pill">Power Electronics</span><span class="tag-pill">PCB Design</span>
+        <span class="tag-pill">Embedded DSP</span><span class="tag-pill">HVDC</span>
+        <span class="tag-pill">Multilevel Inverter</span><span class="tag-pill">C/C++</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ═════════════════════════════════════════════════════════ -->
+<section id="education">
+  <div class="wrapper">
+    <div class="section-label fade-in"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+    <h2 class="section-title fade-in">Academic Background</h2>
+    <p class="section-sub fade-in">University of Pretoria · Letsatsing Science Secondary School</p>
+    <div class="edu-grid">
+      <div class="edu-card fade-in">
+        <div class="edu-degree">BEng Electrical Engineering</div>
+        <div class="edu-school">University of Pretoria</div>
+        <div class="edu-year">2017 – 2023 · Major: Power Systems</div>
+        <div class="edu-modules">
+          <span class="edu-module">Power Systems</span>
+          <span class="edu-module">Power Electronics</span>
+          <span class="edu-module">Embedded Systems</span>
+          <span class="edu-module">Control Systems</span>
+          <span class="edu-module">Digital Electronics</span>
+          <span class="edu-module">Signal Processing</span>
+          <span class="edu-module">HVDC Systems</span>
+          <span class="edu-module">PCB Design</span>
+        </div>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-degree">National Senior Certificate</div>
+        <div class="edu-school">Letsatsing Science Secondary School</div>
+        <div class="edu-year">2014 – 2016 · Dux Bury Award Recipient</div>
+        <div class="edu-modules">
+          <span class="edu-module">Mathematics (A)</span>
+          <span class="edu-module">Physical Science (A)</span>
+          <span class="edu-module">Languages (B)</span>
+          <span class="edu-module">Average: 83%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACHIEVEMENTS ══════════════════════════════════════════════════════ -->
+<section id="achievements">
+  <div class="wrapper">
+    <div class="section-label fade-in"><i class="fa-solid fa-trophy"></i> Recognition</div>
+    <h2 class="section-title fade-in">Awards &amp; Achievements</h2>
+    <p class="section-sub fade-in">Academic excellence recognised at university and high school level</p>
+    <div class="ach-grid">
+      <div class="ach-card fade-in">
+        <div class="ach-icon">🏅</div>
+        <div>
+          <div class="ach-title">Golden Key Award</div>
+          <div class="ach-org">University of Pretoria · 2017 &amp; 2023 </div>
+          <div class="ach-desc">Recognised as a top 15% student in the Engineering, Built Environment &amp; IT (EBIT) faculty with an average of 76.17% in the first year of study and 64.71% GPA overall.</div>
+        </div>
+      </div>
+      <div class="ach-card fade-in">
+        <div class="ach-icon">🥇</div>
+        <div>
+          <div class="ach-title">Dux Bury Award</div>
+          <div class="ach-org">Letsatsing Science Secondary School · 2016</div>
+          <div class="ach-desc">Awarded to the top-performing learner in the school, achieving an overall average of 83% in the National Senior Certificate examinations.</div>
+        </div>
+      </div>
+      <div class="ach-card fade-in">
+        <div class="ach-icon">🎯</div>
+        <div>
+          <div class="ach-title">ECSA/CESA Registration Target</div>
+          <div class="ach-org">Engineering Council of South Africa · 2027–2029</div>
+          <div class="ach-desc">Actively working towards professional registration as a Candidate Engineer, with a target of full ECSA/CESA registration within 3–5 years of graduation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ═══════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="wrapper" style="text-align:center">
+    <div class="section-label fade-in" style="justify-content:center"><i class="fa-solid fa-paper-plane"></i> Connect</div>
+    <h2 class="section-title fade-in">Get in Touch</h2>
+    <p class="section-sub fade-in">Open to new opportunities in renewable energy, electrical engineering, and software development</p>
+    <div class="contact-links fade-in">
+      <a href="mailto:jamesmoatlhudi117@gmail.com" class="contact-link"><i class="fa-solid fa-envelope"></i>u17170312@tuks.co.za</a>
+      <a href="tel:+27636262882" class="contact-link"><i class="fa-solid fa-phone"></i>+27 63 626 2882</a>
+      <a href="https://www.linkedin.com/in/james-moatlhudi-712518152" target="_blank" class="contact-link"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
+      <span class="contact-link"><i class="fa-solid fa-location-dot"></i>Greenstone Hill, Gauteng</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-name">James Moatlhudi</div>
+  <div class="footer-tagline">Electrical Engineer &nbsp;·&nbsp; Renewable Energy Specialist &nbsp;·&nbsp; Software Developer</div>
+  <div class="footer-copy">© 2026 James Moatlhudi · Built as a living portfolio</div>
+</footer>
+
+<!-- ══ JAVASCRIPT ════════════════════════════════════════════════════════ -->
+<script>
+  function toggleTree(el) {
+    el.classList.toggle('open');
+    const ch = el.nextElementSibling;
+    if (ch && ch.classList.contains('tree-children')) ch.classList.toggle('open');
+  }
+
+  function toggleAccordion(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.style.color = '');
+        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (active) active.style.color = 'var(--accent)';
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => navObs.observe(s));
+</script>
+</body>
+</html>
